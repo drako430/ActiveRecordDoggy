@@ -10,13 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_08_19_200724) do
+ActiveRecord::Schema.define(version: 2019_08_20_122228) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "dogs", force: :cascade do |t|
     t.string "name", null: false
+    t.index ["name"], name: "index_dogs_on_name"
   end
 
   create_table "toys", force: :cascade do |t|

@@ -17,7 +17,21 @@ class Dog < ApplicationRecord
         end
     end
 
-    def toys
-        Toy.where({dog_id: self.id})
+    def self.lookup_name_in_ms(name)
+        start = Time.now
+
+        Dog.where(name: name)
+        (Time.now - start) * 1000
     end
+
+    belongs_to :house,
+        primary_key: :id,
+        foreign_key: :house_id,
+        class_name: :House
+
+    has_many(:toys, {
+        primary_key: :id, #dog's od
+        foreign_key: :dog_id,   #dog's id on the othe table
+        class_name: :Toy
+    })
 end
